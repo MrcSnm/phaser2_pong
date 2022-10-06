@@ -4,7 +4,8 @@
   "description": "A Typescript template for HTML5 games using the Phaser game engine. The files included are a mixture of of the basic template provided in the [phaser-ce](https://github.com/photonstorm/phaser-ce) repository and the [Advanced Phaser and Typescript Projects](http://www.photonstorm.com/phaser/advanced-phaser-and-typescript-projects) tutorial provided on the Photon Storm blog.",
   "main": "index.js",
   "scripts": {
-    "dev-watch": "tsc",
+    "dev": "node esbuild_config.js debug",
+    "dev-watch": "node esbuild_config.js debug watch",
     "server": "python -m http.server 8080",
     "dist_build": "esbuild bin/game.js --minify --bundle --outfile=dist/bin/game.js",
     "dist": "node dist.js && tsc && npm run dist_build"

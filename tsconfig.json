@@ -1,14 +1,16 @@
 {
 	"compilerOptions": {
-		"module": "system",
+		"module": "ES6",
+		"lib": ["ES2015", "DOM"],
+		"target": "ES2015",
 		"noImplicitAny": true,
 		"removeComments": true,
 		"preserveConstEnums": true,
-		"outFile": "bin/game.js",
 		"sourceMap": true,
 	},
 	"include": [
 		"src/**/*.ts",
+		"types/defines.d.ts",
 		"node_modules/phaser-ce/typescript/phaser.comments.d.ts"
 	],
 }
