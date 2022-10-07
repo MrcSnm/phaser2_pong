@@ -11,6 +11,7 @@
 	"include": [
 		"src/**/*.ts",
 		"types/defines.d.ts",
+		"types/extended_types.d.ts",
 		"node_modules/phaser-ce/typescript/phaser.comments.d.ts"
 	],
 }
