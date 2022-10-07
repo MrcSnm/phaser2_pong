@@ -21,13 +21,14 @@ export class Preloader extends Phaser.State
 		//	As this is just a Project Template I've not provided these assets, swap them for your own.
 
 		this.load.bitmapFont(Assets.bmFonts.pixelArt);
-		this.load.image('titlepage', 'assets/titlepage.jpg');
-		this.load.audio('titleMusic', 'assets/title.mp3', true);
-		this.load.image('logo', 'assets/logo.png');
-		this.load.spritesheet('simon', 'assets/simon.png', 58, 96, 5);
-		this.load.image('level1', 'assets/level1.png');
-		//	+ lots of other required assets here
 
+		/**
+		 * Load all audios
+		 */
+		for(const effect of Object.values(Assets.sfx))
+		{
+			this.load.audio(effect, effect, true);
+		}
 	}
 
 	create() 

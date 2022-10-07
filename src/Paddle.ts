@@ -1,3 +1,5 @@
+import Assets from "./Assets";
+import Ball from "./Ball";
 import Config from "./Config";
 import Controller from "./Controller";
 
@@ -16,11 +18,11 @@ export default class Paddle extends Phaser.Sprite
 	static createPaddleController(name: string) : Controller<Paddle>
 	{
 		const c = new Controller<Paddle>(name);
-		c.addAction(PaddleActions.MoveDown, (owner) =>
+		c.addAction(PaddleActions.MoveUp, (owner) =>
 		{
 			owner.movePaddleUp();
 		});
-		c.addAction(PaddleActions.MoveUp, (owner) =>
+		c.addAction(PaddleActions.MoveDown, (owner) =>
 		{
 			owner.movePaddleDown();
 		});
@@ -48,17 +50,39 @@ export default class Paddle extends Phaser.Sprite
 
 	protected movePaddleUp()
 	{
-		this.body.velocity.y = Config.PADDLE_VELOCITY;
+		this.body.velocity.y = -Config.PADDLE_VELOCITY;
 	}
 	protected movePaddleDown()
 	{
-		this.body.velocity.y = -Config.PADDLE_VELOCITY;
+		this.body.velocity.y = Config.PADDLE_VELOCITY;
 	}
 
-	setController(controller: Controller<Paddle>)
+	/**
+	 * Protect from going out of game boundaries
+	 */
+	protected handleInputArea() : void
+	{
+		if(this.y < 0)
+		{
+			this.y = 0;
+			this.body.velocity.y = 0;
+		}
+		else if(this.y + this.height > Config.GAME_HEIGHT)
+		{
+			this.y = Config.GAME_HEIGHT - this.height
+			this.body.velocity.y = 0;
+		}
+	}
+
+	setController(controller: Controller<Paddle>) : void
 	{
 		this.controller = controller;
 		this.controller.setOwner(this);
+	}
+
+	checkCollision(ball: Ball) : boolean
+	{
+		return this.game.physics.arcade.overlap(this, ball);
 	}
 
 	updateInput()
@@ -73,6 +97,11 @@ export default class Paddle extends Phaser.Sprite
 	update() 
 	{
 		this.updateInput();
+	}
+	postUpdate(): void 
+	{
+		super.postUpdate();
+		this.handleInputArea();
 	}
 
 }

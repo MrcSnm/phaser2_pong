@@ -12,8 +12,11 @@ export default abstract class Config
     static readonly BALL_SIZE: number = 14;
     static readonly BALL_BOUNCE_SPEED_MULTIPLIER = 1.05;
 
-    static readonly BALL_MIN_ANGLE = 0;
-    static readonly BALL_MAX_ANGLE = 360;
+    static readonly BALL_MIN_VEL_X = 100;
+    static readonly BALL_MAX_VEL_X = 150;
+    static readonly BALL_MIN_VEL_Y = 0;
+    static readonly BALL_MAX_VEL_Y = 80;
+
     static readonly BALL_MIN_VELOCITY_START = 70;
     static readonly BALL_MAX_VELOCITY_START = 150;
 
