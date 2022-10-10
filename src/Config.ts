@@ -11,6 +11,7 @@ export default abstract class Config
     static readonly START_Y_MULTIPLIER : number = 0.5;
     static readonly BALL_SIZE: number = 14;
     static readonly BALL_BOUNCE_SPEED_MULTIPLIER = 1.05;
+    static readonly RESTART_TIME : milliseconds = 2500;
 
     static readonly BALL_MIN_VEL_X = 100;
     static readonly BALL_MAX_VEL_X = 150;
@@ -34,4 +35,5 @@ export default abstract class Config
     static readonly DASHED_LINE_COLOR: number = 0xaaaaaa;
     static readonly DASHED_LINE_WIDTH : number = 5;
     static readonly DASHED_LINE_COUNT : number = 25;
+    
 }

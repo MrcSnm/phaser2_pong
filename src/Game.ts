@@ -1,7 +1,6 @@
 import { Arena } from "./Arena";
 import Boot from "./Boot";
 import Config from "./Config";
-import { MainMenu } from "./MainMenu";
 import { Preloader } from "./Preloader";
 
 export default class Game extends Phaser.Game 
@@ -20,7 +19,6 @@ export default class Game extends Phaser.Game
 		});
 		this.state.add('Boot', Boot, false);
 		this.state.add('Preloader', Preloader, false);
-		this.state.add('MainMenu', MainMenu, false);
 		this.state.add('Arena', Arena, false);
 
 		this.state.start('Boot');

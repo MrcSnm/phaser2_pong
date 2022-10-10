@@ -27,6 +27,7 @@ export default class Ball extends Phaser.Sprite
 
     private startX : number;
     private startY : number;
+    private accelerationFactor : number;
 
     private servingDirection : ServingDirection = ServingDirection.none;
     private hasStarted : boolean = false;
@@ -41,6 +42,7 @@ export default class Ball extends Phaser.Sprite
         this.startY = y;
         this.width  = Config.BALL_SIZE;
         this.height = Config.BALL_SIZE;
+        this.accelerationFactor = accelerationFactor;
         this.sfxBallBoundary = game.add.audio(Assets.sfx.ricochet);
         game.physics.arcade.enable(this);
         game.add.existing(this);
@@ -56,6 +58,7 @@ export default class Ball extends Phaser.Sprite
     {
         if(this.hasStarted)
             return;
+        this.body.enable = true;
         this.hasStarted = true;
 
         if(this.servingDirection == ServingDirection.none)
@@ -76,12 +79,13 @@ export default class Ball extends Phaser.Sprite
 
     restart(servingDirection : ServingDirection = ServingDirection.none)
     {
+        this.body.enable = false;
+        this.body.velocity.x = 0;
+        this.body.velocity.y = 0;
         this.hasStarted = false;
         this.servingDirection = servingDirection;
         this.x = this.startX;
         this.y = this.startY;
-        this.body.velocity.x = 0;
-        this.body.velocity.y = 0;
     }
 
     /**
@@ -105,7 +109,7 @@ export default class Ball extends Phaser.Sprite
 
     onHit()
     {
-        this.body.velocity.multiply(Config.BALL_BOUNCE_SPEED_MULTIPLIER, Config.BALL_BOUNCE_SPEED_MULTIPLIER);
+        this.body.velocity.multiply(this.accelerationFactor, this.accelerationFactor);
         this.sfxBallBoundary.play();
     }
 
