@@ -56,6 +56,9 @@ function copyDirSync(sourceDir, outputDir, shouldLogCopy)
 if(!fs.existsSync("dist"))
     fs.mkdirSync("dist");
 
+if(!fs.existsSync("dist/lib"))
+    fs.mkdirSync("dist/lib");
+
 ///Copy developer maintained files
 
 copyDirSync("assets", "dist", true);

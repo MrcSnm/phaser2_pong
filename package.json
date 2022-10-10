@@ -7,8 +7,8 @@
     "dev": "node esbuild_config.js debug",
     "dev-watch": "node esbuild_config.js debug watch",
     "server": "python -m http.server 8080",
-    "dist_build": "esbuild bin/game.js --minify --bundle --outfile=dist/bin/game.js",
-    "dist": "node dist.js && tsc && npm run dist_build"
+    "dist_build": "esbuild bin/game.js --minify --outfile=dist/bin/game.js",
+    "dist": "node dist.js && npm run dist_build"
   },
   "author": "Marcelo",
   "license": "ISC",

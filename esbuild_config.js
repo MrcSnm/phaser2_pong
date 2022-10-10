@@ -1,4 +1,4 @@
-const {build} = require("esbuild");
+const {build, } = require("esbuild");
 
 const args = process.argv;
 
